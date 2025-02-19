@@ -79,7 +79,7 @@ const loginUser = async (req, res)=>{
 const forgotPassword = async (req, res)=>{
     try {
         const {email} = req.body;
-
+        
         const user = await userModel.findOne({email: email});
 
         if(!user){
@@ -99,7 +99,7 @@ const forgotPassword = async (req, res)=>{
                 to: user.email,
                 from: 'passwordreset@gmail.com',
                 subject: 'Password Reset',
-                text: `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n Please click on the following link, or paste this into your browser to complete the process:\n\n http://localhost:5173/reset-Password/${user.token}\n\n  If you did not request this, please ignore this email and your password will remain unchanged.\n`
+                text: `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n Please click on the following link, or paste this into your browser to complete the process:\n\n https://blogerschannel.netlify.app/reset-Password/${user.token}\n\n  If you did not request this, please ignore this email and your password will remain unchanged.\n`
             }
 
             transporter.sendMail(mailOptions, (err)=>{
