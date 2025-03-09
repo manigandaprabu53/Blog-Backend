@@ -6,7 +6,7 @@ import nodemailer from "nodemailer";
 const registerUser = async (req, res)=>{
     try {
 
-        const {name, email, password} = req.body;
+        let {name, email, password} = req.body;
 
         if(!name){
             return res.status(400).send({message: "Name is required", error: true, success: false});
@@ -55,7 +55,7 @@ const loginUser = async (req, res)=>{
         const checkPassword = auth.checkPassword(password, user.password);
 
         if(!checkPassword){
-            return res.status(400).semd({message: "Invalid Password", error: true, success: false})
+            return res.status(400).send({message: "Invalid Password", error: true, success: false})
         }
 
         const accessToken = auth.createToken({name: user.name, email: user.email, id: user._id});
