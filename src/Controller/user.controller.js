@@ -21,7 +21,7 @@ const registerUser = async (req, res)=>{
         if(checkUser){
             return res.status(400).send({message: "Email Already Exist", error: true, success: false});
         }
-        password = auth.hashData(password);
+        password = await auth.hashData(password);
         const register = await userModel.create({name, email, password});
 
         if(register){
